@@ -69,12 +69,19 @@ def iter_csv_files(path):
 
 colors = ["blue", "green", "orange", "red"]
 
-for i, path in enumerate(iter_csv_files(path)):
-    label = path.split("/")[-1].split(".")[0]
+for i, current_path in enumerate(iter_csv_files(path)):
+    label = current_path.split("/")[-1].split(".")[0]
     label = format_greek_subscript(label)
-    plot_csv(ax, path, label=label)
+    plot_csv(ax, current_path, label=label)
 
+
+ax.set_title("P-regulator respons")
+ax.set_xlabel("Tid [s]")
+ax.set_ylabel("Spenning [V]")
 
 ax.legend()
 ax.grid(True)
 plt.show()
+
+
+fig.savefig(f"plot-{path}.png")
